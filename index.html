@@ -195,7 +195,7 @@
 
         .search-container {
             max-width: 700px;
-            margin: 15px auto 50px;
+            margin: 15px auto 15px;
             position: relative;
         }
 
@@ -385,6 +385,21 @@
         @media (max-width: 768px) {
             .container { padding: 0 15px; }
             .main-content { padding: 40px 0; }
+            .hero-title {
+                font-size: clamp(2rem, 10vw, 3rem);
+            }
+            .hero-logo {
+                width: 50px;
+                height: 50px;
+            }
+            .social-icon {
+                width: 45px;
+                height: 45px;
+            }
+            .social-icon svg {
+                width: 20px;
+                height: 20px;
+            }
             .scripts-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -395,10 +410,30 @@
             .script-logo {
                 width: 60px;
                 height: 60px;
+                border-radius: 12px;
+            }
+            .script-name {
+                font-size: 0.95rem;
+            }
+            .script-description {
+                font-size: 0.75rem;
+            }
+            .arrow-button {
+                width: 40px;
+                height: 40px;
+            }
+            .arrow-button svg {
+                width: 18px;
+                height: 18px;
             }
             .search-box {
                 padding: 15px 50px 15px 20px;
                 font-size: 14px;
+            }
+            .search-icon {
+                width: 20px;
+                height: 20px;
+                right: 20px;
             }
         }
     </style>
@@ -587,4 +622,4 @@
         });
     </script>
 </body>
-          </html>
+    </html>
