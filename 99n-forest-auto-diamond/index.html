@@ -534,40 +534,19 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/26272949f21bd5
             clickAdButton.style.display = 'none';
             progressContainer.classList.add('show');
             
-            let timeAwayFromPage = 0;
+            // Start progress bar animation
             let progress = 0;
-            let isPageVisible = true;
-            
-            // Track page visibility
-            document.addEventListener('visibilitychange', function() {
-                isPageVisible = !document.hidden;
-            });
-            
-            // Start checking if user left the page
             const interval = setInterval(() => {
-                // Only count time when user is away from the page
-                if (!isPageVisible) {
-                    timeAwayFromPage += 100; // Add 0.1 second
-                    progress = (timeAwayFromPage / 5000) * 100; // Calculate progress (5000ms = 5 seconds)
-                    
-                    if (progress > 100) progress = 100;
-                    progressBar.style.width = progress + '%';
-                    
-                    // Check if user has been away for 5 seconds
-                    if (timeAwayFromPage >= 5000) {
-                        clearInterval(interval);
-                        // Enable unlock button
-                        unlockButton.disabled = false;
-                        unlockButton.classList.add('unlocked');
-                    }
-                } else {
-                    // User came back before 5 seconds, reset if they haven't completed
-                    if (timeAwayFromPage < 5000 && timeAwayFromPage > 0) {
-                        // Don't reset immediately, just pause the timer
-                        // This prevents resetting if they briefly check back
-                    }
+                progress += 2;
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    // Enable unlock button
+                    unlockButton.disabled = false;
+                    unlockButton.classList.add('unlocked');
                 }
-            }, 100); // Check every 0.1 second
+            }, 100); // 5 seconds total (50 intervals * 100ms)
         }
 
         function unlockPage() {
@@ -627,4 +606,4 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/26272949f21bd5
         });
     </script>
 </body>
-  </html>
+    </html>
