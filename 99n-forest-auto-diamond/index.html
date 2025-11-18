@@ -228,21 +228,6 @@
             left: 100%;
         }
 
-        #ad-container {
-            width: 100%;
-            min-height: 80px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        #ad-container > div {
-            width: 100%;
-        }
-
         .progress-container {
             width: 100%;
             height: 8px;
@@ -429,10 +414,7 @@
         <div class="popup-container">
             <h2 class="popup-title">Click Ad to Unlock</h2>
             <p class="popup-subtitle">Click and wait 5 seconds, then come back.</p>
-            <div id="ad-container">
-                <script async="async" data-cfasync="false" src="//pl28078015.effectivegatecpm.com/b47e4592aa4f3888b1489bc84862ae5a/invoke.js"></script>
-                <div id="container-b47e4592aa4f3888b1489bc84862ae5a"></div>
-            </div>
+            <button class="popup-button" id="clickAdButton">Click here</button>
             <div class="progress-container" id="progressContainer">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
@@ -540,11 +522,16 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/26272949f21bd5
         }
 
         function handleAdClick() {
+            const clickAdButton = document.getElementById('clickAdButton');
             const progressContainer = document.getElementById('progressContainer');
             const progressBar = document.getElementById('progressBar');
             const unlockButton = document.getElementById('unlockButton');
             
-            // Show progress bar
+            // Open ad link in new tab
+            window.open('https://www.effectivegatecpm.com/f81njhsbf?key=f5161ed0b0765bfbc2606e6538e781ec', '_blank');
+            
+            // Hide click button and show progress
+            clickAdButton.style.display = 'none';
             progressContainer.classList.add('show');
             
             // Start progress bar animation
@@ -560,21 +547,6 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/26272949f21bd5
                     unlockButton.classList.add('unlocked');
                 }
             }, 100); // 5 seconds total (50 intervals * 100ms)
-        }
-
-        // Detect when ad is clicked
-        function initAdClickDetection() {
-            const adContainer = document.getElementById('container-b47e4592aa4f3888b1489bc84862ae5a');
-            if (adContainer) {
-                adContainer.addEventListener('click', handleAdClick);
-                // Also try to detect clicks on child elements
-                setTimeout(() => {
-                    const adElements = adContainer.querySelectorAll('*');
-                    adElements.forEach(element => {
-                        element.addEventListener('click', handleAdClick);
-                    });
-                }, 2000);
-            }
         }
 
         function unlockPage() {
@@ -623,14 +595,15 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/26272949f21bd5
             
             initBackground();
             hideLoading();
-            initAdClickDetection();
             
             const copyButton = document.getElementById('copyButton');
+            const clickAdButton = document.getElementById('clickAdButton');
             const unlockButton = document.getElementById('unlockButton');
             
             copyButton.addEventListener('click', copyScript);
+            clickAdButton.addEventListener('click', handleAdClick);
             unlockButton.addEventListener('click', unlockPage);
         });
     </script>
 </body>
-                    </html>
+    </html>
